@@ -8,7 +8,8 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "generate": "prisma generate",
-    "deploy": "prisma migrate deploy"
+    "deploy": "prisma migrate deploy",
+    "push": "prisma db push --accept-data-loss"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.7.0",
