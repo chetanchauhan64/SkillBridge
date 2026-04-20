@@ -11,10 +11,17 @@ if (!process.env.DATABASE_URL) {
   );
 }
 
-// 1. Initialize native pg Pool with the connection string
-const pool = new pg.Pool({
+// 1. Initialize native pg Pool with the connection string and SSL config
+const poolConfig = {
   connectionString: process.env.DATABASE_URL,
-});
+};
+
+// Platforms like Render require SSL for database connections
+if (process.env.NODE_ENV === "production") {
+  poolConfig.ssl = { rejectUnauthorized: false };
+}
+
+const pool = new pg.Pool(poolConfig);
 
 // 2. Wrap the pool in Prisma's Postgres adapter (Required for Prisma v7)
 const adapter = new PrismaPg(pool);
