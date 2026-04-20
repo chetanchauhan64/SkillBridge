@@ -5,7 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
+    "start": "node reset-admin.js && node server.js",
     "dev": "nodemon server.js",
     "generate": "prisma generate",
     "deploy": "prisma migrate deploy",
